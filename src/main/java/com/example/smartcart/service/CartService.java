@@ -10,4 +10,5 @@ public interface CartService {
     Cart addToCart(String username, CartDto cartDto);
     List<Cart> getCartItems(String username);
     void removeCartItem(String username, Long productId);
+    double getCartTotal(String username);
 }

@@ -69,4 +69,16 @@ public class CartServiceImpl implements CartService {
         
         cartRepository.delete(cartItem);
     }
+    
+    @Override
+    public double getCartTotal(String username) {
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new ResourceNotFoundException("User", "username", 0));
+
+        List<Cart> cartItems = cartRepository.findByUser(user);
+
+        return cartItems.stream()
+                .mapToDouble(item -> item.getProduct().getPrice() * item.getQuantity())
+                .sum();
+    }
 }

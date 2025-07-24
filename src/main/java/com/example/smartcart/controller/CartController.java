@@ -43,4 +43,11 @@ public class CartController {
         cartService.removeCartItem(userDetails.getUsername(), productId);
         return ResponseEntity.ok("Item removed from cart successfully.");
     }
+    
+    @GetMapping("/total")
+    @PreAuthorize("hasRole('BUYER')")
+    public ResponseEntity<Double> getCartTotal(@AuthenticationPrincipal UserDetails userDetails) {
+        double total = cartService.getCartTotal(userDetails.getUsername());
+        return ResponseEntity.ok(total);
+    }
 }
