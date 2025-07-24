@@ -26,6 +26,9 @@ public class User {
     private Role role;
 
     private boolean enabled = true;
+    
+    private String passwordResetToken;
+    private LocalDateTime passwordResetTokenExpiry;
 
     @Column(updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
@@ -55,4 +58,20 @@ public class User {
     public void setProducts(Set<Product> products) { this.products = products; }
     public Set<Cart> getCartItems() { return cartItems; }
     public void setCartItems(Set<Cart> cartItems) { this.cartItems = cartItems; }
+    
+    public String getPasswordResetToken() {
+        return passwordResetToken;
+    }
+
+    public void setPasswordResetToken(String passwordResetToken) {
+        this.passwordResetToken = passwordResetToken;
+    }
+
+    public LocalDateTime getPasswordResetTokenExpiry() {
+        return passwordResetTokenExpiry;
+    }
+
+    public void setPasswordResetTokenExpiry(LocalDateTime passwordResetTokenExpiry) {
+        this.passwordResetTokenExpiry = passwordResetTokenExpiry;
+    }
 }
